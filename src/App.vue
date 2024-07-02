@@ -1,8 +1,23 @@
 <template>
   <h1>{{ title }}</h1>
+
+  <div v-if="showModal">
+    <Modal @close="toggleModal">
+      <h1>Sign up for the Giveaway!</h1>
+      <p>Grab anything you wish for!</p>
+
+      <template v-slot:links>
+        <a href="#">My biggest link</a>
+        <a href="#">More info</a>
+      </template>
+
+    </Modal>
+  </div>
+
+  <button @click="toggleModal">Open Modal</button>
+
   <input type="text" ref="name">
   <button @click="handleClick">click me</button>
-  <Modal />
 </template>
 
 <script>
@@ -16,10 +31,17 @@ export default {
   },
   data() {
     return {
-      title: 'My first vue app'
+      title: 'My first vue app',
+      showModal: false
     }
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
   }
 }
+
 </script>
 
 <style>
